@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26014.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChainingAssertion.Core", "ChainingAssertion.Core\ChainingAssertion.Core.shproj", "{75402E05-0D68-4FE7-9398-06B72123A13C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainingAssertion.Core.MSTest", "ChainingAssertion.Core.MSTest\ChainingAssertion.Core.MSTest.csproj", "{8F042055-623C-4492-A0B1-FE6AE671E353}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainingAssertion.Core.Xunit", "ChainingAssertion.Core.Xunit\ChainingAssertion.Core.Xunit.csproj", "{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest.ChainingAssertion.Core.MSTest", "UnitTest.ChainingAssertion.Core.MSTest\UnitTest.ChainingAssertion.Core.MSTest.csproj", "{26A33773-0DEE-4456-8760-5F29B381BB83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.ChainingAssertion.Core.Xunit", "UnitTest.ChainingAssertion.Core.Xunit\UnitTest.ChainingAssertion.Core.Xunit.csproj", "{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ChainingAssertion.Core\ChainingAssertion.Core.projitems*{75402e05-0d68-4fe7-9398-06b72123a13c}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F042055-623C-4492-A0B1-FE6AE671E353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F042055-623C-4492-A0B1-FE6AE671E353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F042055-623C-4492-A0B1-FE6AE671E353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F042055-623C-4492-A0B1-FE6AE671E353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A33773-0DEE-4456-8760-5F29B381BB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A33773-0DEE-4456-8760-5F29B381BB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A33773-0DEE-4456-8760-5F29B381BB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A33773-0DEE-4456-8760-5F29B381BB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

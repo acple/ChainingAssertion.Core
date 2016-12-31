@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <PackageTargetFallback>dotnet</PackageTargetFallback>
+    <RootNamespace>ChainingAssertion</RootNamespace>
+    <DocumentationFile>\netstandard1.0\ChainingAssertion.Core.MSTest.xml</DocumentationFile>
+    <PackageId>ChainingAssertion.Core.MSTest</PackageId>
+    <PackageVersion>0.1.0-pre</PackageVersion>
+    <Authors>acple;neuecc</Authors>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/brob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
+    <Description>Method Chaining base UnitTesting Extension Methods for MSTest</Description>
+    <Copyright>(c)neuecc All rights reserved.</Copyright>
+    <PackageTags>test;unittest;mstest</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.3.0" />
+  </ItemGroup>
+  <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />
+</Project>
