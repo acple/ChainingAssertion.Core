@@ -9,7 +9,7 @@ namespace ChainingAssertion
     {
         private readonly Dictionary<string, ReflectAccessor> members;
 
-        private ExpressionDumper(IEnumerable<(ParameterExpression parameter, object target)>parameters)
+        private ExpressionDumper(IEnumerable<(ParameterExpression parameter, object target)> parameters)
         {
             this.members = parameters.ToDictionary(x => x.parameter.Name, x => new ReflectAccessor(x.target));
         }

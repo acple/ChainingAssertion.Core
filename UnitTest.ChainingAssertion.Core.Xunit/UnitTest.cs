@@ -117,7 +117,7 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
                 };
             }
         }
-        
+
         private class Person
         {
             public int Age { get; set; }
