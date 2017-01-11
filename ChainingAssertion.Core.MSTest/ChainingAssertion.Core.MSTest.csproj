@@ -3,7 +3,7 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <PackageTargetFallback>dotnet</PackageTargetFallback>
     <RootNamespace>ChainingAssertion</RootNamespace>
-    <DocumentationFile>\netstandard1.0\ChainingAssertion.Core.MSTest.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.MSTest</PackageId>
     <PackageVersion>0.1.0-pre</PackageVersion>
     <Authors>acple;neuecc</Authors>
