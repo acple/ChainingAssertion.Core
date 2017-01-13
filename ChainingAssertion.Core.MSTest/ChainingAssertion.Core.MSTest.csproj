@@ -18,15 +18,8 @@
     <Compile Include="**\*.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
     <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc2" />
-    <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Linq" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-    <PackageReference Include="System.Reflection" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
-    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
-    <PackageReference Include="System.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
     <PackageReference Include="System.ValueTuple" Version="4.3.0" />
   </ItemGroup>
   <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />

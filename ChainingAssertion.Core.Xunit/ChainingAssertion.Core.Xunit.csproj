@@ -17,13 +17,7 @@
     <Compile Include="**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Linq" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-    <PackageReference Include="System.Reflection" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
-    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
-    <PackageReference Include="System.Runtime" Version="4.3.0" />
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
     <PackageReference Include="System.ValueTuple" Version="4.3.0" />
     <PackageReference Include="xunit.assert" Version="2.2.0-beta4-build3444" />
   </ItemGroup>
