@@ -4,12 +4,12 @@
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.Xunit</PackageId>
-    <PackageVersion>0.1.0-pre</PackageVersion>
+    <Version>0.1.0-pre</Version>
     <Authors>acple;neuecc</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/brob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
-    <Description>Method Chaining base UnitTesting Extension Methods for Xunit</Description>
+    <Description>Method Chaining base UnitTesting Extensions for Xunit</Description>
     <Copyright>(c)neuecc All rights reserved.</Copyright>
     <PackageTags>test;unittest;xunit</PackageTags>
   </PropertyGroup>
