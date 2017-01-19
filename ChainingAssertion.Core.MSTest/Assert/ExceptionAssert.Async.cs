@@ -4,7 +4,6 @@ using static ChainingAssertion.AssertionService;
 
 namespace ChainingAssertion
 {
-    /// <summary>exception assertion methods</summary>
     public static partial class ExceptionAssert
     {
         /// <summary>verifies that the exception type of <typeparamref name="T"/> or derived is thrown</summary>
