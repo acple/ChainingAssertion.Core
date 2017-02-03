@@ -36,20 +36,20 @@ namespace ChainingAssertion
             if (ReferenceEquals(left, right))
                 return;
             if (left == null || right == null)
-                throw Assertion.Exception($"is not structural equal, failed at { name }, expected = { left ?? "null" } actual = { right ?? "null" }{ message }");
+                throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left ?? "null"} actual = {right ?? "null"}{message}");
 
             var type = left.GetType();
 
             // runtime type
             var rtype = right.GetType();
             if (type != rtype)
-                throw Assertion.Exception($"is not structural equal, failed at { name }, expected = Type<{ type }> actual = Type<{ rtype }>{ message }");
+                throw Assertion.Exception($"is not structural equal, failed at {name}, expected = Type<{type}> actual = Type<{rtype}>{message}");
 
             // is string or primitive
             if (type == typeof(string) || type.GetTypeInfo().IsPrimitive)
             {
                 if (!left.Equals(right))
-                    throw Assertion.Exception($"is not structural equal, failed at { name }, expected = { left } actual = { right }{ message }");
+                    throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
                 return;
             }
 
@@ -76,7 +76,7 @@ namespace ChainingAssertion
             if (equatable.IsAssignableFrom(type.GetTypeInfo()))
             {
                 if (!(bool)equatable.GetDeclaredMethod("Equals").Invoke(left, new[] { right }))
-                    throw Assertion.Exception($"is not structural equal, failed at { name }, expected = { left } actual = { right }{ message }");
+                    throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
                 return;
             }
 
@@ -114,7 +114,7 @@ namespace ChainingAssertion
             var rightArray = rightEnumerable.Cast<object>().ToArray();
 
             if (leftArray.Length != rightArray.Length)
-                throw Assertion.Exception($"is not structural equal, failed at { name }, sequence Length is different: expected = [{ leftArray.Length }] actual = [{ rightArray.Length }]{ message }");
+                throw Assertion.Exception($"is not structural equal, failed at {name}, sequence Length is different: expected = [{leftArray.Length}] actual = [{rightArray.Length}]{message}");
 
             var items = leftArray.Zip(rightArray, ValueTuple.Create)
                 .Select((x, i) => (left: x.Item1, right: x.Item2, index: i));

@@ -18,7 +18,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -78,7 +78,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -100,7 +100,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -123,7 +123,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -225,7 +225,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -253,7 +253,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -282,7 +282,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -312,7 +312,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -343,7 +343,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -375,7 +375,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }
@@ -408,7 +408,7 @@ namespace ChainingAssertion
                 }
                 catch (Exception exception)
                 {
-                    throw Assertion.Exception($"failed in the case { parameter }: { exception }", exception);
+                    throw Assertion.Exception($"failed in the case {parameter}: {exception}", exception);
                 }
             }
         }

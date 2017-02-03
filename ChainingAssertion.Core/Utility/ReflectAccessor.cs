@@ -29,7 +29,7 @@ namespace ChainingAssertion
                 if (field != null)
                     return field.GetValue(this.Target);
 
-                throw new ArgumentException($"\"{ name }\" not found : Type <{ this._type.Name }>");
+                throw new ArgumentException($"\"{name}\" not found : Type <{this._type.Name}>");
             }
             set
             {
@@ -51,7 +51,7 @@ namespace ChainingAssertion
                     return;
                 }
 
-                throw new ArgumentException($"\"{ name }\" not found : Type <{ this._type.Name }>");
+                throw new ArgumentException($"\"{name}\" not found : Type <{this._type.Name}>");
             }
         }
 

@@ -25,7 +25,7 @@ namespace ChainingAssertion
             var members = string.Join(", ", dump.Select(x => x.Key + " = " + x.Value));
             var additional = (string.IsNullOrEmpty(message)) ? string.Empty : "\n" + message;
 
-            Assertion.True(predicate.Compile().Invoke(value), $"\n{ members }\n{ predicate }{ additional }");
+            Assertion.True(predicate.Compile().Invoke(value), $"\n{members}\n{predicate}{additional}");
         }
 
         /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>

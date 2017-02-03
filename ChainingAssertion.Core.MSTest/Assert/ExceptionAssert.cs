@@ -19,9 +19,9 @@ namespace ChainingAssertion
             }
             catch (Exception exception)
             {
-                throw Assertion.Exception($"Failed Throws<{ typeof(T).Name }>. Catched:{ exception.GetType().Name }{ Message.Format(message) }", exception);
+                throw Assertion.Exception($"Failed Throws<{typeof(T).Name}>. Catched:{exception.GetType().Name}{Message.Format(message)}", exception);
             }
-            throw Assertion.Exception($"Failed Throws<{ typeof(T).Name }>. No exception was thrown{ Message.Format(message) }");
+            throw Assertion.Exception($"Failed Throws<{typeof(T).Name}>. No exception was thrown{Message.Format(message)}");
         }
 
         /// <summary>verifies that the exception type of <typeparamref name="T"/> is thrown (not allow derived type)</summary>
@@ -37,9 +37,9 @@ namespace ChainingAssertion
             }
             catch (Exception exception)
             {
-                throw Assertion.Exception($"Failed Throws<{ typeof(T).Name }>. Catched:{ exception.GetType().Name }{ Message.Format(message) }", exception);
+                throw Assertion.Exception($"Failed Throws<{typeof(T).Name}>. Catched:{exception.GetType().Name}{Message.Format(message)}", exception);
             }
-            throw Assertion.Exception($"Failed Throws<{ typeof(T).Name }>. No exception was thrown{ Message.Format(message) }");
+            throw Assertion.Exception($"Failed Throws<{typeof(T).Name}>. No exception was thrown{Message.Format(message)}");
         }
     }
 }
