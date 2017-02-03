@@ -10,7 +10,7 @@
     <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/brob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
     <Description>Method Chaining base UnitTesting Extensions for Xunit</Description>
-    <Copyright>(c)neuecc All rights reserved.</Copyright>
+    <Copyright>(c) 2017 neuecc</Copyright>
     <PackageTags>test;unittest;xunit</PackageTags>
   </PropertyGroup>
   <ItemGroup>
