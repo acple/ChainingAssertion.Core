@@ -101,31 +101,14 @@ namespace ChainingAssertion
             }
 
             // is object
-            // compare all public fields and all public getters that has backing field
-
-            // public fields with name
-            var fields = type
-                .GetRuntimeFields()
-                .Where(field => field.IsPublic)
-                .Select(field => (field, field.Name));
-
-            // public getter names
-            var getterNames = type
-                .GetRuntimeProperties()
-                .Where(property => property.GetMethod?.IsStatic == false && property.GetMethod.IsPublic)
-                .Select(property => property.Name);
-
-            // backing fields of public getter
-            var backingFields = type
-                .GetRuntimeFields()
-                .Where(field => field.Name.StartsWith("<"))
-                .Join(getterNames,
-                    field => field.Name.Substring(1, field.Name.IndexOf('>') - 1),
-                    getterName => getterName,
-                    ValueTuple.Create);
-
-            foreach (var (field, memberName) in fields.Concat(backingFields))
+            // compare all fields
+            foreach (var field in type.GetRuntimeFields())
+            {
+                var memberName = (field.Name.StartsWith("<")) // backingfield
+                    ? field.Name.Substring(1, field.Name.IndexOf('>') - 1)
+                    : field.Name;
                 StructuralEqual(field.GetValue(left), field.GetValue(right), name + "." + memberName, message);
+            }
         }
 
         private static void SequenceEqual(IEnumerable leftEnumerable, IEnumerable rightEnumerable, string name, string message)

@@ -156,7 +156,7 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
 
             public StructuralEqualTestClass()
             {
-                SetOnlyProp = rand.Next();
+                SetOnlyProp = 123456; // rand.Next();
             }
         }
 

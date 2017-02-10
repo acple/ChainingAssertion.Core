@@ -299,7 +299,7 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
 
             public StructuralEqualTestClass()
             {
-                this.SetOnlyProp = rand.Next();
+                this.SetOnlyProp = 123456; // rand.Next();
             }
         }
 
