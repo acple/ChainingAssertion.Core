@@ -21,11 +21,14 @@ namespace ChainingAssertion
         /// <summary>verifies that the <paramref name="predicate"/> returns true</summary>
         public static void Is<T>(this T value, Expression<Func<T, bool>> predicate, string message = "")
         {
+            if (predicate.Compile().Invoke(value))
+                return;
+
             var dump = ExpressionDumper.Dump(predicate, value);
             var members = string.Join(", ", dump.Select(x => x.Key + " = " + x.Value));
             var additional = (string.IsNullOrEmpty(message)) ? string.Empty : "\n" + message;
 
-            Assertion.True(predicate.Compile().Invoke(value), $"\n{members}\n{predicate}{additional}");
+            Assertion.Fail($"\n{members}\n{predicate}{additional}");
         }
 
         /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
