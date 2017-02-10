@@ -39,6 +39,9 @@ namespace ChainingAssertion
         public void False(bool condition, string message)
             => Assert.IsFalse(condition, message);
 
+        public void Fail(string message)
+            => Assert.Fail(message);
+
         public void ReferenceEqual<T>(T expected, T actual, string message)
             => Assert.AreSame(expected, actual, message);
 

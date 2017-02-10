@@ -21,6 +21,8 @@ namespace ChainingAssertion
 
         void False(bool condition, string message);
 
+        void Fail(string message);
+
         void ReferenceEqual<T>(T expected, T actual, string message);
 
         void NotReferenceEqual<T>(T expected, T actual, string message);
