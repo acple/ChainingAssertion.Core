@@ -80,6 +80,26 @@ namespace ChainingAssertion
                 return;
             }
 
+            // is IComparable<T>
+            var comparable = typeof(IComparable<>)
+                .MakeGenericType(type)
+                .GetTypeInfo();
+
+            if (comparable.IsAssignableFrom(type.GetTypeInfo()))
+            {
+                if (0 != (int)comparable.GetDeclaredMethod("CompareTo").Invoke(left, new[] { right }))
+                    throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
+                return;
+            }
+
+            // is IComparable
+            if (left is IComparable lc)
+            {
+                if (0 != lc.CompareTo(right))
+                    throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
+                return;
+            }
+
             // is object
             // compare all public fields and all public getters that has backing field
 
