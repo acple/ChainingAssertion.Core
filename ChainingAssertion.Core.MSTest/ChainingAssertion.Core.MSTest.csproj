@@ -5,7 +5,7 @@
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.MSTest</PackageId>
-    <Version>0.1.0-pre</Version>
+    <Version>0.1.1</Version>
     <Authors>acple</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/blob/master/LICENSE</PackageLicenseUrl>
