@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.Xunit</PackageId>
@@ -15,7 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.3.0" />
-    <PackageReference Include="xunit.assert" Version="2.2.0-beta5-build3474" />
+    <PackageReference Include="xunit.assert" Version="2.2.0" />
   </ItemGroup>
   <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />
 </Project>

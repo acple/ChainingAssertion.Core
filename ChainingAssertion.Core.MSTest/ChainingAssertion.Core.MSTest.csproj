@@ -15,7 +15,7 @@
     <PackageTags>test;unittest;mstest</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MSTest.TestFramework" Version="1.0.8-rc2" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
     <PackageReference Include="System.ValueTuple" Version="4.3.0" />
   </ItemGroup>
   <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />
