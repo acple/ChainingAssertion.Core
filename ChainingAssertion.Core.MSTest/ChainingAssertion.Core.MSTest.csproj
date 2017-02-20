@@ -6,12 +6,12 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.MSTest</PackageId>
     <Version>0.1.0-pre</Version>
-    <Authors>acple;neuecc</Authors>
+    <Authors>acple</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/brob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
-    <Description>Method Chaining base UnitTesting Extensions for MSTest</Description>
-    <Copyright>(c) 2017 neuecc</Copyright>
+    <Description>Method Chaining base UnitTesting Extensions for MSTest V2</Description>
+    <Copyright>(c) 2017 acple</Copyright>
     <PackageTags>test;unittest;mstest</PackageTags>
   </PropertyGroup>
   <ItemGroup>
