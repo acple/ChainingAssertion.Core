@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26014.0
@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ChainingAssertion.Core", "ChainingAssertion.Core\ChainingAssertion.Core.shproj", "{75402E05-0D68-4FE7-9398-06B72123A13C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainingAssertion.Core.MSTest", "ChainingAssertion.Core.MSTest\ChainingAssertion.Core.MSTest.csproj", "{8F042055-623C-4492-A0B1-FE6AE671E353}"
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "ChainingAssertion.Core.NUnit", "ChainingAssertion.Core.NUnit\ChainingAssertion.Core.NUnit.csproj", "{38D15BA3-048A-4A0B-A754-A72C3C9E71B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainingAssertion.Core.Xunit", "ChainingAssertion.Core.Xunit\ChainingAssertion.Core.Xunit.csproj", "{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}"
 EndProject
@@ -26,6 +28,10 @@ Global
 		{8F042055-623C-4492-A0B1-FE6AE671E353}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F042055-623C-4492-A0B1-FE6AE671E353}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F042055-623C-4492-A0B1-FE6AE671E353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D15BA3-048A-4A0B-A754-A72C3C9E71B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D15BA3-048A-4A0B-A754-A72C3C9E71B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D15BA3-048A-4A0B-A754-A72C3C9E71B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D15BA3-048A-4A0B-A754-A72C3C9E71B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EAEBF7D-303E-4865-8C08-65C0D6321EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
