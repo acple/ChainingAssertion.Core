@@ -7,6 +7,14 @@ namespace ChainingAssertion
 {
     internal partial class AssertionService : IAssertionService
     {
+        public Type ExceptionType => typeof(AssertFailedException);
+
+        public Exception Exception(string message)
+            => new AssertFailedException(message);
+
+        public Exception Exception(string message, Exception inner)
+            => new AssertFailedException(message, inner);
+
         public void Equal<T>(T expected, T actual, string message)
             => Assert.AreEqual(expected, actual, message);
 
@@ -53,14 +61,5 @@ namespace ChainingAssertion
 
         public void NotInstanceOf<T>(object value, string message)
             => Assert.IsNotInstanceOfType(value, typeof(T), message);
-
-        public Exception Exception()
-            => new AssertFailedException();
-
-        public Exception Exception(string message)
-            => new AssertFailedException(message);
-
-        public Exception Exception(string message, Exception inner)
-            => new AssertFailedException(message, inner);
     }
 }

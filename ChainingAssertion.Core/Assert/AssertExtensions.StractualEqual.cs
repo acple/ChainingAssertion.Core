@@ -19,7 +19,7 @@ namespace ChainingAssertion
             {
                 StructuralEqual(expected, actual, string.Empty, string.Empty);
             }
-            catch (Exception exception) when (exception.GetType() == Assertion.Exception().GetType())
+            catch (Exception exception) when (exception.GetType() == Assertion.ExceptionType)
             {
                 return;
             }

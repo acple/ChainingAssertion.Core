@@ -5,6 +5,12 @@ namespace ChainingAssertion
 {
     internal interface IAssertionService
     {
+        Type ExceptionType { get; }
+
+        Exception Exception(string message);
+
+        Exception Exception(string message, Exception inner);
+
         void Equal<T>(T expected, T actual, string message);
 
         void NotEqual<T>(T expected, T actual, string message);
@@ -30,11 +36,5 @@ namespace ChainingAssertion
         void InstanceOf<T>(object value, string message);
 
         void NotInstanceOf<T>(object value, string message);
-
-        Exception Exception();
-
-        Exception Exception(string message);
-
-        Exception Exception(string message, Exception inner);
     }
 }
