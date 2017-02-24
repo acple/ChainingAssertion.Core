@@ -381,9 +381,9 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
         public void StructuralEqualFailedTest()
         {
             // type
-            //object n = null;
-            //AssertEx.Throws<AssertFailedException>(() => n.IsStructuralEqual("a"));
-            //AssertEx.Throws<AssertFailedException>(() => "a".IsStructuralEqual(n));
+            object n = null;
+            ExceptionAssert.Throws<AssertFailedException>(() => n.IsStructuralEqual("a"));
+            ExceptionAssert.Throws<AssertFailedException>(() => "a".IsStructuralEqual(n));
             //int i = 10;
             //long l = 10;
             //AssertEx.Throws<AssertFailedException>(() => i.IsStructuralEqual(l));
@@ -510,9 +510,9 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
         public void NotStructuralEqualSuccessTest()
         {
             // type
-            //object n = null;
-            //n.IsNotStructuralEqual("a");
-            //"a".IsNotStructuralEqual(n);
+            object n = null;
+            n.IsNotStructuralEqual("a");
+            "a".IsNotStructuralEqual(n);
             //int i = 10;
             //long l = 10;
             //i.IsNotStructuralEqual(l);
