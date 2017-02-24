@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainingAssertion.Core.Xuni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest.ChainingAssertion.Core.MSTest", "UnitTest.ChainingAssertion.Core.MSTest\UnitTest.ChainingAssertion.Core.MSTest.csproj", "{26A33773-0DEE-4456-8760-5F29B381BB83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.ChainingAssertion.Core.NUnit", "UnitTest.ChainingAssertion.Core.NUnit\UnitTest.ChainingAssertion.Core.NUnit.csproj", "{F00AC4A5-93D2-40D4-B5F6-7D50330FA45B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest.ChainingAssertion.Core.Xunit", "UnitTest.ChainingAssertion.Core.Xunit\UnitTest.ChainingAssertion.Core.Xunit.csproj", "{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}"
 EndProject
 Global
@@ -40,6 +42,10 @@ Global
 		{26A33773-0DEE-4456-8760-5F29B381BB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26A33773-0DEE-4456-8760-5F29B381BB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26A33773-0DEE-4456-8760-5F29B381BB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F00AC4A5-93D2-40D4-B5F6-7D50330FA45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00AC4A5-93D2-40D4-B5F6-7D50330FA45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00AC4A5-93D2-40D4-B5F6-7D50330FA45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00AC4A5-93D2-40D4-B5F6-7D50330FA45B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AC37B0D-A4A6-4CAF-B35B-1E706F3BFBC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
