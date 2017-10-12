@@ -4,7 +4,7 @@
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.Xunit</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Authors>acple</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/blob/master/LICENSE</PackageLicenseUrl>
