@@ -238,9 +238,9 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
         public void StructuralEqualFailed()
         {
             //// type
-            //object n = null;
-            //Assert.Throws<ChainingAssertionException>(() => n.IsStructuralEqual("a"));
-            //Assert.Throws<ChainingAssertionException>(() => "a".IsStructuralEqual(n));
+            object n = null;
+            Assert.Throws<ChainingAssertionException>(() => n.IsStructuralEqual("a"));
+            Assert.Throws<ChainingAssertionException>(() => "a".IsStructuralEqual(n));
             //int i = 10;
             //long l = 10;
             //Assert.Throws<ChainingAssertionException>(() => i.IsStructuralEqual(l));
@@ -367,9 +367,9 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
         public void NotStructuralEqualSuccess()
         {
             //// type
-            //object n = null;
-            //n.IsNotStructuralEqual("a");
-            //"a".IsNotStructuralEqual(n);
+            object n = null;
+            n.IsNotStructuralEqual("a");
+            "a".IsNotStructuralEqual(n);
             //int i = 10;
             //long l = 10;
             //i.IsNotStructuralEqual(l);

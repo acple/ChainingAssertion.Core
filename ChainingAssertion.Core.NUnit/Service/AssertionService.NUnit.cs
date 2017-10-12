@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChainingAssertion
 {
     internal partial class AssertionService : IAssertionService
     {
-        public Type ExceptionType => typeof(AssertFailedException);
+        public Type ExceptionType => typeof(AssertionException);
 
         public Exception Exception(string message)
-            => new AssertFailedException(message);
+            => new AssertionException(message);
 
         public Exception Exception(string message, Exception inner)
-            => new AssertFailedException(message, inner);
+            => new AssertionException(message, inner);
 
         public void Equal<T>(T expected, T actual, string message)
-            => Assert.AreEqual(expected, actual, message);
+            => Assert.AreEqual(expected, actual);
 
         public void NotEqual<T>(T expected, T actual, string message)
-            => Assert.AreNotEqual(expected, actual, message);
+            => Assert.AreNotEqual(expected, actual);
 
         public void Equal<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T> comparer, string message)
             => CollectionAssert.AreEqual(
@@ -57,9 +57,9 @@ namespace ChainingAssertion
             => Assert.AreNotSame(expected, actual, message);
 
         public void InstanceOf<T>(object value, string message)
-            => Assert.IsInstanceOfType(value, typeof(T), message);
+            => Assert.IsInstanceOf(typeof(T), value, message);
 
         public void NotInstanceOf<T>(object value, string message)
-            => Assert.IsNotInstanceOfType(value, typeof(T), message);
+            => Assert.IsNotInstanceOf(typeof(T), value, message);
     }
 }

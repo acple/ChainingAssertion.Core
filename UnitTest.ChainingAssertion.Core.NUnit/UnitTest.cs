@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ChainingAssertion;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
-namespace UnitTest.ChainingAssertion.Core.MSTest
+namespace UnitTest.ChainingAssertion.Core.NUnit
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest
     {
-        // samples
-
-        [TestMethod]
+        [Test]
         public void IsTest()
         {
             // "Is" extend on all object and has three overloads.
@@ -29,27 +26,27 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
             Enumerable.Range(1, 5).Is(1, 2, 3, 4, 5);
         }
 
-        [TestMethod]
+        [Test]
         public void CollectionTest()
         {
             // if you want to use CollectionAssert Methods then use Linq to Objects and Is
+            new[] { 1, 3, 7, 8 }.Contains(8).Is(true);
+            new[] { 1, 3, 7, 8 }.Count(i => i % 2 != 0).Is(3);
+            new[] { 1, 3, 7, 8 }.Any().Is(true);
+            new[] { 1, 3, 7, 8 }.All(i => i < 5).Is(false);
 
-            var array = new[] { 1, 3, 7, 8 };
-            array.Count().Is(4);
-            array.Contains(8).IsTrue(); // IsTrue() == Is(true)
-            array.All(i => i < 5).IsFalse(); // IsFalse() == Is(false)
-            array.Any().Is(true);
-            new int[] { }.IsEmpty();   // IsEmpty
-            array.OrderBy(x => x).Is(array); // IsOrdered
+            // IsOrdered
+            var array = new[] { 1, 5, 10, 100 };
+            array.Is(array.OrderBy(x => x));
         }
 
-        [TestMethod]
+        [Test]
         public void OthersTest()
         {
             // Null Assertions
-            var obj = null as object;
+            Object obj = null;
             obj.IsNull();             // Assert.IsNull(obj)
-            new object().IsNotNull(); // Assert.IsNotNull(obj)
+            new Object().IsNotNull(); // Assert.IsNotNull(obj)
 
             // Not Assertion
             "foobar".IsNot("fooooooo"); // Assert.AreNotEqual
@@ -61,14 +58,11 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
             tuple.IsNotSameReferenceAs(Tuple.Create("foo")); // Assert.AreNotSame
 
             // Type Assertion
-            var foobar = default(object);
-            foobar = "foobar";
-            foobar.IsInstanceOf<string>() // Assert.IsInstanceOfType
-                .ToUpper().Is("FOOBAR");            // ...returns the instance as TExpected.
-            (999).IsNotInstanceOf<double>(); // Assert.IsNotInstanceOfType
+            "foobar".IsInstanceOf<string>(); // Assert.IsInstanceOf
+            (999).IsNotInstanceOf<double>(); // Assert.IsNotInstanceOf
         }
 
-        [TestMethod]
+        [Test]
         public void AdvancedCollectionTest()
         {
             var lower = new[] { "a", "b", "c" };
@@ -79,43 +73,44 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
             lower.Is(upper, (x, y) => x.ToUpper() == y.ToUpper());
 
             // or you can use Linq to Objects - SequenceEqual
-            lower.SequenceEqual(upper, StringComparer.OrdinalIgnoreCase).IsTrue();
+            lower.SequenceEqual(upper, StringComparer.OrdinalIgnoreCase).Is(true);
         }
 
-        class MyClass
-        {
-            public int IntProp { get; set; }
-            public string StrField;
-        }
-
-        [TestMethod]
-        public void StructuralEqualTest()
-        {
-            var mc1 = new MyClass() { IntProp = 10, StrField = "foo" };
-            var mc2 = new MyClass() { IntProp = 10, StrField = "foo" };
-
-            mc1.IsStructuralEqual(mc2); // deep recursive value equality compare
-
-            mc1.IntProp = 20;
-            mc1.IsNotStructuralEqual(mc2);
-        }
-
-        [TestMethod]
+        [Test]
         public void ExceptionTest()
         {
-            // Exception Test(alternative of ExpectedExceptionAttribute)
-            // Throws does not allow derived type
-            // Catch allows derived type
-            ExceptionAssert.Throws<ArgumentNullException>(() => "foo".StartsWith(null));
-            ExceptionAssert.Catch<Exception>(() => "foo".StartsWith(null));
+            Assert.Throws<ArgumentNullException>(() => "foo".StartsWith(null));
+            Assert.Catch<Exception>(() => "foo".StartsWith(null));
 
-            // return value is occured exception
-            var ex = ExceptionAssert.Throws<InvalidOperationException>(() =>
+            Assert.DoesNotThrow(() =>
             {
-                throw new InvalidOperationException("foobar operation");
+                // code
             });
-            ex.Message.Is(m => m.Contains("foobar")); // additional exception assertion
         }
+
+        [Test]
+        [TestCase(1, 2, 3)]
+        [TestCase(10, 20, 30)]
+        [TestCase(100, 200, 300)]
+        public void TestCaseTest(int x, int y, int z)
+        {
+            (x + y).Is(z);
+            (x + y + z).Is(i => i < 1000);
+        }
+
+        [Test]
+        [TestCaseSource("toaruSource")]
+        public void TestTestCaseSource(int x, int y, string z)
+        {
+            string.Concat(x, y).Is(z);
+        }
+
+        public static object[] toaruSource = new[]
+        {
+            new object[] {1, 1, "11"},
+            new object[] {5, 3, "53"},
+            new object[] {9, 4, "94"}
+        };
 
         private class Person
         {
@@ -124,7 +119,7 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
             public string GivenName { get; set; }
         }
 
-        [TestMethod]
+        [Test]
         public void DumpTest()
         {
             var count = new List<int>() { 1, 2, 3 };
@@ -141,148 +136,21 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
             Assert.Fail();
         }
 
-        // testcase
-
-        [TestMethod]
-        public void RunTestCaseTest()
+        [Test]
+        public void IsNullMethodMessage()
         {
-            var source = new[]
-            {
-                (1, 2, 3),
-                (10, 20, 30),
-                (100, 200, 300)
-            };
 
-            source.RunTestCase((x, y, z) =>
-            {
-                (x + y).Is(z);
-                (x + y + z).Is(i => i < 1000);
-            });
-
-            var toaruSource = new[]
-            {
-                (1, 1, "11"),
-                (5, 3, "53"),
-                (9, 4, "94")
-            };
-
-            toaruSource.RunTestCase((x, y, result) =>
-            {
-                string.Concat(x, y).Is(result);
-            });
-        }
-
-        [TestMethod]
-        public async Task RunTestCaseAsyncTest()
-        {
-            var source = new[]
-            {
-                (1, 2, 3),
-                (10, 20, 30),
-                (100, 200, 300)
-            };
-
-            await source.RunTestCaseAsync(async (x, y, z) =>
-            {
-                await Task.Run(() => (x + y).Is(z));
-                (x + y + z).Is(i => i < 1000);
-            });
-
-            var toaruSource = new[]
-            {
-                (1, 1, "11"),
-                (5, 3, "53"),
-                (9, 4, "94")
-            };
-
-            await toaruSource.RunTestCaseAsync(async (x, y, result) =>
-            {
-                await Task.Run(() => string.Concat(x, y).Is(result));
-            });
-        }
-
-        // exceptions
-
-        [TestMethod]
-        public void ThrowsTest()
-        {
-            try
-            {
-                ExceptionAssert.Throws<Exception>(() => "foo".StartsWith(null));
-            }
-            catch (AssertFailedException)
-            {
-                return;
-            }
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void CatchTest()
-        {
-            try
-            {
-                ExceptionAssert.Catch<Exception>(() => "foo".StartsWith(null));
-            }
-            catch (AssertFailedException)
-            {
-                Assert.Fail();
-            }
-            return;
-        }
-
-        [TestMethod]
-        public void ThrowsTest2()
-        {
-            try
-            {
-                ExceptionAssert.Throws<Exception>(() => { });
-            }
-            catch (AssertFailedException)
-            {
-                return;
-            }
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void CatchTest2()
-        {
-            try
-            {
-                ExceptionAssert.Catch<Exception>(() => { });
-            }
-            catch (AssertFailedException)
-            {
-                return;
-            }
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void ExceptionTest2()
-        {
-            var ex = ExceptionAssert.Throws<ArgumentNullException>(() =>
-            {
-                throw new ArgumentNullException("nullnull");
-            });
-            ex.ParamName.Is("nullnull");
-        }
-
-        [TestMethod]
-        public void IsNullMessageTest()
-        {
-            var o = new object();
+            object o = new object();
             o.IsNotNull();
-            ExceptionAssert.Throws<AssertFailedException>(
+            Assert.Throws<AssertionException>(
                 () => o.IsNull("msg_msg"))
-            .Message.Is(m => m.Contains("msg_msg"));
+            .Message.Contains("msg_msg").Is(true);
 
             o = null;
             o.IsNull();
-            ExceptionAssert.Throws<AssertFailedException>(
+            Assert.Throws<AssertionException>(
                 () => o.IsNotNull("msg_msg"))
-            .Message.Is(m => m.Contains("msg_msg"));
+            .Message.Contains("msg_msg").Is(true);
         }
 
         public class StructuralEqualTestClass
@@ -330,8 +198,8 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
 
         }
 
-        [TestMethod]
-        public void StructuralEqualSuccessTest()
+        [Test]
+        public void StructuralEqualSuccess()
         {
             // primitive
             "hoge".IsStructuralEqual("hoge");
@@ -372,38 +240,35 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
                     MP2 = new MMM() { MyProperty = 10000 }
                 }
             };
-            (123, "abc", s1).IsStructuralEqual((123, "abc", s2));
+
             s1.IsStructuralEqual(s1);
             s1.IsStructuralEqual(s2);
         }
 
-        [TestMethod]
-        public void StructuralEqualFailedTest()
+        [Test]
+        public void StructuralEqualFailed()
         {
             // type
             object n = null;
-            ExceptionAssert.Throws<AssertFailedException>(() => n.IsStructuralEqual("a"));
-            ExceptionAssert.Throws<AssertFailedException>(() => "a".IsStructuralEqual(n));
-            //int i = 10;
-            //long l = 10;
-            //AssertEx.Throws<AssertFailedException>(() => i.IsStructuralEqual(l));
+            Assert.Throws<AssertionException>(() => n.IsStructuralEqual("a"));
+            Assert.Throws<AssertionException>(() => "a".IsStructuralEqual(n));
 
             // primitive
-            ExceptionAssert.Throws<AssertFailedException>(() => "hoge".IsStructuralEqual("hage"))
+            Assert.Throws<AssertionException>(() => "hoge".IsStructuralEqual("hage"))
                 .Message.Is(m => m.Contains("expected = hage actual = hoge"));
-            ExceptionAssert.Throws<AssertFailedException>(() => (100).IsStructuralEqual(101))
+            Assert.Throws<AssertionException>(() => (100).IsStructuralEqual(101))
                 .Message.Is(m => m.Contains("expected = 101 actual = 100"));
 
-            ExceptionAssert.Throws<AssertFailedException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2 }))
+            Assert.Throws<AssertionException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2 }))
                 .Message.Is(m => m.Contains("sequence Length is different: expected = [2] actual = [3]"));
 
-            ExceptionAssert.Throws<AssertFailedException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 4 }))
+            Assert.Throws<AssertionException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 4 }))
                 .Message.Is(m => m.Contains("expected = 4 actual = 3"));
 
-            ExceptionAssert.Throws<AssertFailedException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 3, 4 }))
+            Assert.Throws<AssertionException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 3, 4 }))
                 .Message.Is(m => m.Contains("sequence Length is different: expected = [4] actual = [3]"));
 
-            ExceptionAssert.Throws<AssertFailedException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 12 } }))
+            Assert.Throws<AssertionException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 12 } }))
                 .Message.Is(m => m.Contains("expected = 12 actual = 10"));
 
             var s1 = new StructuralEqualTestClass
@@ -451,26 +316,26 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
                 }
             };
 
-            ExceptionAssert.Throws<AssertFailedException>(() => s1.IsStructuralEqual(s2))
+            Assert.Throws<AssertionException>(() => s1.IsStructuralEqual(s2))
                 .Message.Is(m => m.Contains("at StructuralEqualTestClass.IntArray, sequence Length is different: expected = [6] actual = [5]"));
 
-            ExceptionAssert.Throws<AssertFailedException>(() => s1.IsStructuralEqual(s3))
+            Assert.Throws<AssertionException>(() => s1.IsStructuralEqual(s3))
                 .Message.Is(m => m.Contains("StructuralEqualTestClass.StruStru.MP2.MyProperty"));
         }
 
 
-        [TestMethod]
-        public void NotStructuralEqualFailedTest()
+        [Test]
+        public void NotStructuralEqualFailed()
         {
             // primitive
-            ExceptionAssert.Throws<AssertFailedException>(() => "hoge".IsNotStructuralEqual("hoge"));
-            ExceptionAssert.Throws<AssertFailedException>(() => (100).IsNotStructuralEqual(100));
-            ExceptionAssert.Throws<AssertFailedException>(() => new[] { 1, 2, 3 }.IsNotStructuralEqual(new[] { 1, 2, 3 }));
+            Assert.Throws<AssertionException>(() => "hoge".IsNotStructuralEqual("hoge"));
+            Assert.Throws<AssertionException>(() => (100).IsNotStructuralEqual(100));
+            Assert.Throws<AssertionException>(() => new[] { 1, 2, 3 }.IsNotStructuralEqual(new[] { 1, 2, 3 }));
 
             // complex
-            ExceptionAssert.Throws<AssertFailedException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsNotStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }));
-            ExceptionAssert.Throws<AssertFailedException>(() => new DummyStructural() { MyProperty = "aiueo" }.IsNotStructuralEqual(new DummyStructural() { MyProperty = "kakikukeko" }));
-            ExceptionAssert.Throws<AssertFailedException>(() => new EmptyClass().IsNotStructuralEqual(new EmptyClass()));
+            Assert.Throws<AssertionException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsNotStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }));
+            Assert.Throws<AssertionException>(() => new DummyStructural() { MyProperty = "aiueo" }.IsNotStructuralEqual(new DummyStructural() { MyProperty = "kakikukeko" }));
+            Assert.Throws<AssertionException>(() => new EmptyClass().IsNotStructuralEqual(new EmptyClass()));
 
             var s1 = new StructuralEqualTestClass
             {
@@ -502,20 +367,17 @@ namespace UnitTest.ChainingAssertion.Core.MSTest
                 }
             };
 
-            ExceptionAssert.Throws<AssertFailedException>(() => s1.IsNotStructuralEqual(s1));
-            ExceptionAssert.Throws<AssertFailedException>(() => s1.IsNotStructuralEqual(s2));
+            Assert.Throws<AssertionException>(() => s1.IsNotStructuralEqual(s1));
+            Assert.Throws<AssertionException>(() => s1.IsNotStructuralEqual(s2));
         }
 
-        [TestMethod]
-        public void NotStructuralEqualSuccessTest()
+        [Test]
+        public void NotStructuralEqualSuccess()
         {
             // type
             object n = null;
             n.IsNotStructuralEqual("a");
             "a".IsNotStructuralEqual(n);
-            //int i = 10;
-            //long l = 10;
-            //i.IsNotStructuralEqual(l);
 
             // primitive
             "hoge".IsNotStructuralEqual("hage");

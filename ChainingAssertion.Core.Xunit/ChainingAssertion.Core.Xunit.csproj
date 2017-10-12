@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>ChainingAssertion</RootNamespace>
@@ -9,12 +9,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
-    <Description>Method Chaining base UnitTesting Extensions for Xunit 2.2</Description>
+    <Description>Method Chaining base UnitTesting Extensions for Xunit 2.2+</Description>
     <Copyright>(c) 2017 acple</Copyright>
     <PackageTags>test;unittest;xunit</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.3.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
     <PackageReference Include="xunit.assert" Version="2.2.0" />
   </ItemGroup>
   <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />
