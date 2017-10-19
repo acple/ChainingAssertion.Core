@@ -120,9 +120,9 @@ namespace ChainingAssertion
                 throw Assertion.Exception($"is not structural equal, failed at {name}, sequence Length is different: expected = [{leftArray.Length}] actual = [{rightArray.Length}]{message}");
 
             var items = leftArray.Zip(rightArray, ValueTuple.Create)
-                .Select((x, i) => (left: x.Item1, right: x.Item2, index: i));
+                .Select((tuple, index) => (tuple, index));
 
-            foreach (var (left, right, i) in items)
+            foreach (var ((left, right), i) in items)
                 StructuralEqual(left, right, name + "[" + i + "]", message);
         }
     }
