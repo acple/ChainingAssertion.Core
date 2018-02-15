@@ -23,10 +23,6 @@ namespace ChainingAssertion
             {
                 return;
             }
-            catch
-            {
-                throw;
-            }
             throw Assertion.Exception("is structural equal" + Message.Format(message));
         }
 
