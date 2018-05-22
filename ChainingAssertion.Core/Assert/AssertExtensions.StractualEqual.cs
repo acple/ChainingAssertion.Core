@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using static ChainingAssertion.AssertionService;
 
 namespace ChainingAssertion
@@ -11,6 +12,10 @@ namespace ChainingAssertion
         /// <summary>verifies that <paramref name="actual"/> is structurally equal to <paramref name="expected"/></summary>
         public static void IsStructuralEqual<T>(this T actual, T expected, string message = "")
             => StructuralEqual(expected, actual, typeof(T).Name, Message.Format(message));
+
+        /// <summary>verifies that <paramref name="actual"/> is structurally equal to <paramref name="expected"/></summary>
+        public static async Task IsStructuralEqual<T>(this Task<T> actual, T expected, string message = "")
+            => (await actual.ConfigureAwait(false)).IsStructuralEqual(expected, message);
 
         /// <summary>verifies that <paramref name="actual"/> is not structurally equal to <paramref name="expected"/></summary>
         public static void IsNotStructuralEqual<T>(this T actual, T expected, string message = "")
@@ -23,12 +28,12 @@ namespace ChainingAssertion
             {
                 return;
             }
-            catch
-            {
-                throw;
-            }
             throw Assertion.Exception("is structural equal" + Message.Format(message));
         }
+
+        /// <summary>verifies that <paramref name="actual"/> is not structurally equal to <paramref name="expected"/></summary>
+        public static async Task IsNotStructuralEqual<T>(this Task<T> actual, T expected, string message = "")
+            => (await actual.ConfigureAwait(false)).IsNotStructuralEqual(expected, message);
 
         private static void StructuralEqual(object left, object right, string name, string message)
         {
@@ -120,9 +125,9 @@ namespace ChainingAssertion
                 throw Assertion.Exception($"is not structural equal, failed at {name}, sequence Length is different: expected = [{leftArray.Length}] actual = [{rightArray.Length}]{message}");
 
             var items = leftArray.Zip(rightArray, ValueTuple.Create)
-                .Select((x, i) => (left: x.Item1, right: x.Item2, index: i));
+                .Select((tuple, index) => (tuple, index));
 
-            foreach (var (left, right, i) in items)
+            foreach (var ((left, right), i) in items)
                 StructuralEqual(left, right, name + "[" + i + "]", message);
         }
     }

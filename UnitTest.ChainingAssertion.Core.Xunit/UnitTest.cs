@@ -99,13 +99,13 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
         }
 
         [Theory]
-        [MemberData("ToaruSource")]
+        [MemberData(nameof(ToaruSource))]
         public void TestTestCaseSource(int x, int y, string z)
         {
             string.Concat(x, y).Is(z);
         }
 
-        public static object[] ToaruSource
+        public static object[][] ToaruSource
         {
             get
             {
