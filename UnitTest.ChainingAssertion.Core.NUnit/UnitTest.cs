@@ -120,23 +120,6 @@ namespace UnitTest.ChainingAssertion.Core.NUnit
         }
 
         [Test]
-        public void DumpTest()
-        {
-            var count = new List<int>() { 1, 2, 3 };
-            var person = new Person { Age = 50, FamilyName = "Yamamoto", GivenName = "Tasuke" };
-            try
-            {
-                person.Is(p => p.Age < count.Count && p.FamilyName == "Yamada" && p.GivenName == "Tarou");
-            }
-            catch (Exception ex)
-            {
-                ex.Message.Is(m => m.Contains("p.Age = 50") && m.Contains("p.FamilyName = Yamamoto") && m.Contains("p.GivenName = Tasuke"));
-                return;
-            }
-            Assert.Fail();
-        }
-
-        [Test]
         public void IsNullMethodMessage()
         {
 
