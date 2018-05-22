@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using static ChainingAssertion.AssertionService;
 
 namespace ChainingAssertion
@@ -11,6 +12,10 @@ namespace ChainingAssertion
         /// <summary>verifies that <paramref name="actual"/> is structurally equal to <paramref name="expected"/></summary>
         public static void IsStructuralEqual<T>(this T actual, T expected, string message = "")
             => StructuralEqual(expected, actual, typeof(T).Name, Message.Format(message));
+
+        /// <summary>verifies that <paramref name="actual"/> is structurally equal to <paramref name="expected"/></summary>
+        public static async Task IsStructuralEqual<T>(this Task<T> actual, T expected, string message = "")
+            => (await actual.ConfigureAwait(false)).IsStructuralEqual(expected, message);
 
         /// <summary>verifies that <paramref name="actual"/> is not structurally equal to <paramref name="expected"/></summary>
         public static void IsNotStructuralEqual<T>(this T actual, T expected, string message = "")
@@ -25,6 +30,10 @@ namespace ChainingAssertion
             }
             throw Assertion.Exception("is structural equal" + Message.Format(message));
         }
+
+        /// <summary>verifies that <paramref name="actual"/> is not structurally equal to <paramref name="expected"/></summary>
+        public static async Task IsNotStructuralEqual<T>(this Task<T> actual, T expected, string message = "")
+            => (await actual.ConfigureAwait(false)).IsNotStructuralEqual(expected, message);
 
         private static void StructuralEqual(object left, object right, string name, string message)
         {
