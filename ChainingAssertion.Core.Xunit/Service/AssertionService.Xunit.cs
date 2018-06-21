@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace ChainingAssertion
@@ -22,10 +21,10 @@ namespace ChainingAssertion
             => Assert.NotEqual(expected, actual);
 
         public void Equal<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T> comparer, string message)
-            => Assert.True(actual.SequenceEqual(expected, comparer), message);
+            => Assert.Equal(expected, actual, comparer ?? EqualityComparer<T>.Default);
 
         public void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T> comparer, string message)
-            => Assert.False(actual.SequenceEqual(expected, comparer), message);
+            => Assert.NotEqual(expected, actual, comparer ?? EqualityComparer<T>.Default);
 
         public void Null<T>(T value, string message)
             => Assert.Null(value);
