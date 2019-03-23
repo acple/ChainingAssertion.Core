@@ -4,18 +4,21 @@
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>ChainingAssertion.Core.Xunit</PackageId>
-    <Version>0.3.1</Version>
+    <Version>1.0.0</Version>
     <Authors>acple</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/acple/ChainingAssertion.Core.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>v$(Version)</RepositoryBranch>
     <Description>Method Chaining base UnitTesting Extensions for Xunit 2.2+</Description>
-    <Copyright>(c) 2017 acple</Copyright>
+    <Copyright>(c) 2017-2019 acple</Copyright>
     <PackageTags>test;unittest;xunit</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="xunit.assert" Version="2.2.0" />
   </ItemGroup>
-  <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />
+  <Import Project="../ChainingAssertion.Core/ChainingAssertion.Core.projitems" Label="Shared" />
 </Project>
