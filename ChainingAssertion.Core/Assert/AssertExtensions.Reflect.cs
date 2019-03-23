@@ -1,4 +1,4 @@
-﻿namespace ChainingAssertion
+namespace ChainingAssertion
 {
     public static partial class AssertExtensions
     {
