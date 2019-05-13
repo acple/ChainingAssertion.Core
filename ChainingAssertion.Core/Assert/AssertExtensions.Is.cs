@@ -109,10 +109,10 @@ namespace ChainingAssertion
 
         /// <summary>verifies that the <paramref name="collection"/> is empty</summary>
         public static void IsEmpty<T>(this IEnumerable<T> collection, string message = "")
-            => collection.Any().IsFalse(message);
+            => collection.Is(Enumerable.Empty<T>(), message);
 
         /// <summary>verifies that the <paramref name="collection"/> is not empty</summary>
         public static void IsNotEmpty<T>(this IEnumerable<T> collection, string message = "")
-            => collection.Any().IsTrue(message);
+            => collection.IsNot(Enumerable.Empty<T>(), message);
     }
 }
