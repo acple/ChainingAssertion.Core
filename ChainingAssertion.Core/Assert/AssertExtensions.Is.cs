@@ -31,19 +31,19 @@ namespace ChainingAssertion
             Assertion.Fail($"\n{members}\n{predicate}{additional}");
         }
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static void Is<T>(this IEnumerable<T> actual, params T[] expected)
             => actual.Is(expected.AsEnumerable());
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static void Is<T>(this IEnumerable<T> actual, IEnumerable<T> expected, string message = "")
             => Assertion.Equal(expected, actual, null, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static void Is<T>(this IEnumerable<T> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
             => Assertion.Equal(expected, actual, comparer, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static void Is<T>(this IEnumerable<T> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
             => Assertion.Equal(expected, actual, new AssertEqualityComparer<T>(equals), message);
 
@@ -56,19 +56,19 @@ namespace ChainingAssertion
                 Assertion.NotEqual(expected, actual, message);
         }
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static void IsNot<T>(this IEnumerable<T> actual, params T[] expected)
             => actual.IsNot(expected.AsEnumerable());
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static void IsNot<T>(this IEnumerable<T> actual, IEnumerable<T> expected, string message = "")
             => Assertion.NotEqual(expected, actual, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static void IsNot<T>(this IEnumerable<T> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
             => Assertion.NotEqual(expected, actual, comparer, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static void IsNot<T>(this IEnumerable<T> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
             => Assertion.NotEqual(expected, actual, new AssertEqualityComparer<T>(equals), message);
 
