@@ -3,6 +3,7 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DebugType Condition="'$(Configuration)'=='Release'">none</DebugType>
     <PackageId>ChainingAssertion.Core.Xunit</PackageId>
     <Version>1.0.0</Version>
     <Authors>acple</Authors>
