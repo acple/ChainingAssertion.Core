@@ -1,0 +1,81 @@
+version: 2.1
+
+executors:
+  dotnet:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.0-alpine
+    working_directory: /project
+    environment:
+      NUGET_PACKAGES: /project/packages
+
+jobs:
+  build:
+    executor: dotnet
+    steps:
+      - checkout
+      - run:
+          name: build
+          command: dotnet build -c Release --no-incremental -v=normal
+      - persist_to_workspace:
+          root: .
+          paths: ./*
+
+  unittest:
+    executor: dotnet
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: run test
+          command: dotnet test -c Release --no-build -v=normal
+
+  pack:
+    executor: dotnet
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: pack
+          command: dotnet pack -c Release --no-build --output ./nuget
+      - store_artifacts:
+          path: ./nuget
+      - persist_to_workspace:
+          root: .
+          paths: ./nuget/*
+
+  push:
+    executor: dotnet
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: push to NuGet Gallery
+          command: dotnet nuget push ./nuget/*.nupkg -s https://www.nuget.org -k ${NUGET_APIKEY}
+
+workflows:
+  workflow:
+    jobs:
+      - build:
+          filters: &default_filter
+            tags:
+              only: /^v\d+\.\d+\.\d+(-.+)?$/
+
+      - unittest:
+          requires:
+            - build
+          filters: *default_filter
+
+      - pack:
+          requires:
+            - build
+          filters: *default_filter
+
+      - push:
+          context: nuget-publish
+          requires:
+            - build
+            - unittest
+          filters:
+            <<: *default_filter
+            branches:
+              ignore: /.*/
