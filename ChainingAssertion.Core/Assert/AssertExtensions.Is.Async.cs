@@ -13,6 +13,7 @@ namespace ChainingAssertion
 
         /// <summary>verifies that the <paramref name="predicate"/> returns true</summary>
         public static async Task Is<T>(this Task<T> value, Expression<Func<T, bool>> predicate, string message = "")
+            where T : notnull
             => (await value.ConfigureAwait(false)).Is(predicate, message);
 
         /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>

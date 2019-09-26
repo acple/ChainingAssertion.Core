@@ -7,11 +7,11 @@ namespace ChainingAssertion
 {
     internal class ExpressionDumper : ExpressionVisitor
     {
-        private readonly Dictionary<string, ReflectAccessor> members;
+        private readonly Dictionary<string, ReflectAccessor?> members;
 
         private ExpressionDumper(IEnumerable<(ParameterExpression parameter, object target)> parameters)
         {
-            this.members = parameters.ToDictionary(x => x.parameter.Name, x => new ReflectAccessor(x.target));
+            this.members = parameters.ToDictionary(x => x.parameter.Name, x => new ReflectAccessor(x.target))!;
         }
 
         protected override Expression VisitMember(MemberExpression node)
@@ -26,19 +26,19 @@ namespace ChainingAssertion
             this.Visit(node.Expression);
 
             if (this.members.TryGetValue(parent, out var accessor))
-                this.members.Add(fullname, new ReflectAccessor(accessor[name]));
+                this.members.Add(fullname, (accessor?[name] is { } obj) ? new ReflectAccessor(obj) : null);
 
             return node;
         }
 
-        public static IReadOnlyDictionary<string, object> Dump(LambdaExpression expression, params object[] targets)
+        public static IReadOnlyDictionary<string, object?> Dump(LambdaExpression expression, params object[] targets)
         {
             if (expression.Parameters.Count != targets.Length)
                 throw new ArgumentException("parameter length doesn't match");
 
             var dumper = new ExpressionDumper(expression.Parameters.Zip(targets, ValueTuple.Create));
             dumper.Visit(expression.Body);
-            return dumper.members.ToDictionary(x => x.Key, x => x.Value.Target);
+            return dumper.members.ToDictionary(x => x.Key, x => x.Value?.Target);
         }
     }
 }

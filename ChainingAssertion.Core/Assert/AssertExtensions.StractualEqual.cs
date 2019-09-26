@@ -41,7 +41,7 @@ namespace ChainingAssertion
             private static readonly ConcurrentDictionary<Type, Action<object, object, string, string>> comparerCache =
                 new ConcurrentDictionary<Type, Action<object, object, string, string>>();
 
-            public static void Run(object left, object right, string name, string message)
+            public static void Run(object? left, object? right, string name, string message)
             {
                 if (ReferenceEquals(left, right))
                     return;
@@ -72,14 +72,14 @@ namespace ChainingAssertion
 
                 // is sequence
                 if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(typeInfo))
-                    return (left, right, name, message) => SequenceEqual(left as IEnumerable, right as IEnumerable, name, message);
+                    return (left, right, name, message) => SequenceEqual((IEnumerable)left, (IEnumerable)right, name, message);
 
                 // is IStructuralEquatable
                 if (typeof(IStructuralEquatable).GetTypeInfo().IsAssignableFrom(typeInfo))
                     return (left, right, name, message) =>
                     {
                         var index = 0;
-                        (left as IStructuralEquatable).Equals(right, new AssertEqualityComparer<object>((x, y) => { Run(x, y, name + "{" + index++ + "}", message); return true; }));
+                        (left as IStructuralEquatable)!.Equals(right, new AssertEqualityComparer<object>((x, y) => { Run(x, y, name + "{" + index++ + "}", message); return true; }));
                     };
 
                 // is IEquatable<T>
@@ -116,7 +116,7 @@ namespace ChainingAssertion
                 if (typeof(IComparable).GetTypeInfo().IsAssignableFrom(typeInfo))
                     return (left, right, name, message) =>
                     {
-                        if (0 != (left as IComparable).CompareTo(right))
+                        if (0 != (left as IComparable)!.CompareTo(right))
                             throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
                     };
 

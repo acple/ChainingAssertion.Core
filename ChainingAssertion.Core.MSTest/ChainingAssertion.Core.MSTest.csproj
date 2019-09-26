@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.1</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DebugType Condition="'$(Configuration)'=='Release'">none</DebugType>
