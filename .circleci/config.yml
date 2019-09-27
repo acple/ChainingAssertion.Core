@@ -8,6 +8,21 @@ executors:
     environment:
       NUGET_PACKAGES: /project/packages
 
+commands:
+  run_test:
+    parameters:
+      test_host: { type: string }
+    steps:
+      - run:
+          name: run test for << parameters.test_host >>
+          command: >-
+            dotnet test -c Release --no-build
+            --logger "trx;LogFileName=TestResult.xml"
+            UnitTest.ChainingAssertion.Core.<< parameters.test_host >>
+      - store_artifacts:
+          path: ./UnitTest.ChainingAssertion.Core.<< parameters.test_host >>/TestResults/TestResult.xml
+          destination: TestResult.<< parameters.test_host >>.xml
+
 jobs:
   build:
     executor: dotnet
@@ -25,9 +40,12 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: run test
-          command: dotnet test -c Release --no-build -v=normal
+      - run_test:
+          test_host: MSTest
+      - run_test:
+          test_host: NUnit
+      - run_test:
+          test_host: Xunit
 
   pack:
     executor: dotnet
@@ -50,7 +68,7 @@ jobs:
           at: .
       - run:
           name: push to NuGet Gallery
-          command: dotnet nuget push ./nuget/*.nupkg -s https://www.nuget.org -k ${NUGET_APIKEY}
+          command: dotnet nuget push ./nuget/ -s https://www.nuget.org -k ${NUGET_APIKEY}
 
 workflows:
   workflow:
@@ -73,7 +91,7 @@ workflows:
       - push:
           context: nuget-publish
           requires:
-            - build
+            - pack
             - unittest
           filters:
             <<: *default_filter
