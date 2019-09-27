@@ -1,0 +1,103 @@
+version: 2.1
+
+executors:
+  dotnet:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.0-alpine
+    working_directory: /project
+    environment:
+      NUGET_PACKAGES: /project/packages
+
+commands:
+  run_test:
+    parameters:
+      test_host: { type: string }
+    steps:
+      - run:
+          name: run test for << parameters.test_host >>
+          command: >-
+            dotnet test -c Release --no-build
+            --logger "trx;LogFileName=TestResult.xml"
+            UnitTest.ChainingAssertion.Core.<< parameters.test_host >>
+      - store_artifacts:
+          path: ./UnitTest.ChainingAssertion.Core.<< parameters.test_host >>/TestResults/TestResult.xml
+          destination: TestResult.<< parameters.test_host >>.xml
+
+jobs:
+  build:
+    executor: dotnet
+    steps:
+      - checkout
+      - run:
+          name: build
+          command: dotnet build -c Release --no-incremental -v=normal
+      - persist_to_workspace:
+          root: .
+          paths: ./*
+
+  unittest:
+    executor: dotnet
+    steps:
+      - attach_workspace:
+          at: .
+      - run_test:
+          test_host: MSTest
+      - run_test:
+          test_host: NUnit
+      - run_test:
+          test_host: Xunit
+
+  pack:
+    executor: dotnet
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: pack
+          command: dotnet pack -c Release --no-build --output ./nuget
+      - store_artifacts:
+          path: ./nuget
+      - persist_to_workspace:
+          root: .
+          paths: ./nuget/*
+
+  push:
+    executor: dotnet
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: push to NuGet Gallery
+          command: dotnet nuget push ./nuget/ -s https://www.nuget.org -k ${NUGET_APIKEY}
+
+workflows:
+  workflow:
+    jobs:
+      - build:
+          filters: &default_filter
+            branches:
+              only:
+                - master
+                - dev
+            tags:
+              only: /^v\d+\.\d+\.\d+(-.+)?$/
+
+      - unittest:
+          requires:
+            - build
+          filters: *default_filter
+
+      - pack:
+          requires:
+            - build
+          filters: *default_filter
+
+      - push:
+          context: nuget-publish
+          requires:
+            - pack
+            - unittest
+          filters:
+            <<: *default_filter
+            branches:
+              ignore: /.*/
