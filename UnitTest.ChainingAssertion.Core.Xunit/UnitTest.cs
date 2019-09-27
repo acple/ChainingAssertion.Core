@@ -239,28 +239,28 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
         {
             //// type
             object n = null;
-            Assert.Throws<ChainingAssertionException>(() => n.IsStructuralEqual("a"));
-            Assert.Throws<ChainingAssertionException>(() => "a".IsStructuralEqual(n));
+            Assert.Throws<ChainingAssertionXunitException>(() => n.IsStructuralEqual("a"));
+            Assert.Throws<ChainingAssertionXunitException>(() => "a".IsStructuralEqual(n));
             //int i = 10;
             //long l = 10;
             //Assert.Throws<ChainingAssertionException>(() => i.IsStructuralEqual(l));
 
             // primitive
-            Assert.Throws<ChainingAssertionException>(() => "hoge".IsStructuralEqual("hage"))
+            Assert.Throws<ChainingAssertionXunitException>(() => "hoge".IsStructuralEqual("hage"))
                 .Message.Is(m => m.Contains("expected = hage actual = hoge"));
-            Assert.Throws<ChainingAssertionException>(() => (100).IsStructuralEqual(101))
+            Assert.Throws<ChainingAssertionXunitException>(() => (100).IsStructuralEqual(101))
                 .Message.Is(m => m.Contains("expected = 101 actual = 100"));
 
-            Assert.Throws<ChainingAssertionException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2 }))
+            Assert.Throws<ChainingAssertionXunitException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2 }))
                 .Message.Is(m => m.Contains("sequence Length is different: expected = [2] actual = [3]"));
 
-            Assert.Throws<ChainingAssertionException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 4 }))
+            Assert.Throws<ChainingAssertionXunitException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 4 }))
                 .Message.Is(m => m.Contains("expected = 4 actual = 3"));
 
-            Assert.Throws<ChainingAssertionException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 3, 4 }))
+            Assert.Throws<ChainingAssertionXunitException>(() => new[] { 1, 2, 3 }.IsStructuralEqual(new[] { 1, 2, 3, 4 }))
                 .Message.Is(m => m.Contains("sequence Length is different: expected = [4] actual = [3]"));
 
-            Assert.Throws<ChainingAssertionException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 12 } }))
+            Assert.Throws<ChainingAssertionXunitException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 12 } }))
                 .Message.Is(m => m.Contains("expected = 12 actual = 10"));
 
             var s1 = new StructuralEqualTestClass
@@ -308,10 +308,10 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
                 }
             };
 
-            Assert.Throws<ChainingAssertionException>(() => s1.IsStructuralEqual(s2))
+            Assert.Throws<ChainingAssertionXunitException>(() => s1.IsStructuralEqual(s2))
                 .Message.Is(m => m.Contains("at StructuralEqualTestClass.IntArray, sequence Length is different: expected = [6] actual = [5]"));
 
-            Assert.Throws<ChainingAssertionException>(() => s1.IsStructuralEqual(s3))
+            Assert.Throws<ChainingAssertionXunitException>(() => s1.IsStructuralEqual(s3))
                 .Message.Is(m => m.Contains("StructuralEqualTestClass.StruStru.MP2.MyProperty"));
         }
 
@@ -320,14 +320,14 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
         public void NotStructuralEqualFailed()
         {
             // primitive
-            Assert.Throws<ChainingAssertionException>(() => "hoge".IsNotStructuralEqual("hoge"));
-            Assert.Throws<ChainingAssertionException>(() => (100).IsNotStructuralEqual(100));
-            Assert.Throws<ChainingAssertionException>(() => new[] { 1, 2, 3 }.IsNotStructuralEqual(new[] { 1, 2, 3 }));
+            Assert.Throws<ChainingAssertionXunitException>(() => "hoge".IsNotStructuralEqual("hoge"));
+            Assert.Throws<ChainingAssertionXunitException>(() => (100).IsNotStructuralEqual(100));
+            Assert.Throws<ChainingAssertionXunitException>(() => new[] { 1, 2, 3 }.IsNotStructuralEqual(new[] { 1, 2, 3 }));
 
             // complex
-            Assert.Throws<ChainingAssertionException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsNotStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }));
-            Assert.Throws<ChainingAssertionException>(() => new DummyStructural() { MyProperty = "aiueo" }.IsNotStructuralEqual(new DummyStructural() { MyProperty = "kakikukeko" }));
-            Assert.Throws<ChainingAssertionException>(() => new EmptyClass().IsNotStructuralEqual(new EmptyClass()));
+            Assert.Throws<ChainingAssertionXunitException>(() => new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }.IsNotStructuralEqual(new { Hoge = "aiueo", Huga = 100, Tako = new { k = 10 } }));
+            Assert.Throws<ChainingAssertionXunitException>(() => new DummyStructural() { MyProperty = "aiueo" }.IsNotStructuralEqual(new DummyStructural() { MyProperty = "kakikukeko" }));
+            Assert.Throws<ChainingAssertionXunitException>(() => new EmptyClass().IsNotStructuralEqual(new EmptyClass()));
 
             var s1 = new StructuralEqualTestClass
             {
@@ -359,8 +359,8 @@ namespace UnitTest.ChainingAssertion.Core.Xunit
                 }
             };
 
-            Assert.Throws<ChainingAssertionException>(() => s1.IsNotStructuralEqual(s1));
-            Assert.Throws<ChainingAssertionException>(() => s1.IsNotStructuralEqual(s2));
+            Assert.Throws<ChainingAssertionXunitException>(() => s1.IsNotStructuralEqual(s1));
+            Assert.Throws<ChainingAssertionXunitException>(() => s1.IsNotStructuralEqual(s2));
         }
 
         [Fact]

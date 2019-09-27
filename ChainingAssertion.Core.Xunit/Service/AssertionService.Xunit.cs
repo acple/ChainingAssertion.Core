@@ -6,13 +6,13 @@ namespace ChainingAssertion
 {
     internal partial class AssertionService : IAssertionService
     {
-        public Type ExceptionType => typeof(ChainingAssertionException);
+        public Type ExceptionType => typeof(ChainingAssertionXunitException);
 
         public Exception Exception(string message)
-            => new ChainingAssertionException(message);
+            => new ChainingAssertionXunitException(message);
 
         public Exception Exception(string message, Exception inner)
-            => new ChainingAssertionException(message, inner);
+            => new ChainingAssertionXunitException(message, inner);
 
         public void Equal<T>(T expected, T actual, string message)
             => Assert.Equal(expected, actual);
