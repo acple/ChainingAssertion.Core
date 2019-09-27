@@ -1,21 +1,34 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard1.1</TargetFrameworks>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
     <RootNamespace>ChainingAssertion</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DebugType Condition="'$(Configuration)'=='Release'">none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PackageId>ChainingAssertion.Core.MSTest</PackageId>
-    <Version>0.3.0</Version>
+    <Version>1.0.0</Version>
     <Authors>acple</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/acple/ChainingAssertion.Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/acple/ChainingAssertion.Core.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>v$(Version)</RepositoryBranch>
     <Description>Method Chaining base UnitTesting Extensions for MSTest V2</Description>
-    <Copyright>(c) 2017 acple</Copyright>
+    <Copyright>(c) 2017-2019 acple</Copyright>
     <PackageTags>test;unittest;mstest</PackageTags>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" Condition="'$(TargetFramework)'=='netstandard1.1'" />
   </ItemGroup>
-  <Import Project="..\ChainingAssertion.Core\ChainingAssertion.Core.projitems" Label="Shared" />
+
+  <Import Project="../ChainingAssertion.Core/ChainingAssertion.Core.projitems" Label="Shared" />
+
 </Project>

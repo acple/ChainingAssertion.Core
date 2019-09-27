@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -37,7 +37,7 @@ namespace ChainingAssertion
         int IComparer<T>.Compare(T x, T y)
             => (this._equals(x, y)) ? 0 : -1;
 
-        int IComparer.Compare(object x, object y)
+        int IComparer.Compare(object? x, object? y)
             => (x is T a && y is T b && this._equals(a, b)) ? 0 : -1;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -13,7 +13,7 @@ namespace ChainingAssertion
         public object Target { get; }
 
         /// <summary>get/set member value with specified name</summary>
-        public object this[string name]
+        public object? this[string name]
         {
             get
             {
@@ -67,19 +67,21 @@ namespace ChainingAssertion
         }
 
         /// <summary>get object member value with specified name</summary>
-        public static object Reflect(Type type, object target, string name)
+        public static object? Reflect(Type type, object target, string name)
             => new ReflectAccessor(target, type)[name];
 
         /// <summary>get object member value with specified name</summary>
-        public static object Reflect(object target, string name)
+        public static object? Reflect(object target, string name)
             => Reflect(target.GetType(), target, name);
 
         /// <summary>get object member value with specified name</summary>
-        public static object Reflect<T>(object target, string name)
+        public static object? Reflect<T>(object target, string name)
+            where T : notnull
             => Reflect(typeof(T), target, name);
 
         /// <summary>get object member value with specified name</summary>
-        public static object Reflect<T>(T target, string name)
+        public static object? Reflect<T>(T target, string name)
+            where T : notnull
             => Reflect(typeof(T), target, name);
     }
 }

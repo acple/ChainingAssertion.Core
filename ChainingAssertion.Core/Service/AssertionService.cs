@@ -1,4 +1,4 @@
-﻿namespace ChainingAssertion
+namespace ChainingAssertion
 {
     internal partial class AssertionService
     {

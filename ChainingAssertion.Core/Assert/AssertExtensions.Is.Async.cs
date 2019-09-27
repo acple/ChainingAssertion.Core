@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -13,21 +13,22 @@ namespace ChainingAssertion
 
         /// <summary>verifies that the <paramref name="predicate"/> returns true</summary>
         public static async Task Is<T>(this Task<T> value, Expression<Func<T, bool>> predicate, string message = "")
+            where T : notnull
             => (await value.ConfigureAwait(false)).Is(predicate, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static async Task Is<T>(this Task<IEnumerable<T>> actual, params T[] expected)
             => (await actual.ConfigureAwait(false)).Is(expected);
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static async Task Is<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, string message = "")
             => (await actual.ConfigureAwait(false)).Is(expected, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static async Task Is<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
             => (await actual.ConfigureAwait(false)).Is(expected, comparer, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
         public static async Task Is<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
             => (await actual.ConfigureAwait(false)).Is(expected, equals, message);
 
@@ -35,19 +36,19 @@ namespace ChainingAssertion
         public static async Task IsNot<T>(this Task<T> actual, T expected, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, params T[] expected)
             => (await actual.ConfigureAwait(false)).IsNot(expected);
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, comparer, message);
 
-        /// <summary>verifies that <paramref name="actual"/> is not sequencially equal to <paramref name="expected"/></summary>
+        /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
         public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, equals, message);
 
