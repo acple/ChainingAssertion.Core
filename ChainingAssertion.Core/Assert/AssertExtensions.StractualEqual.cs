@@ -89,10 +89,10 @@ namespace ChainingAssertion
 
                 if (equatable.IsAssignableFrom(typeInfo))
                 {
-                    var equals = equatable.GetDeclaredMethod("Equals");
+                    var equals = equatable.GetDeclaredMethod("Equals")!;
                     return (left, right, name, message) =>
                     {
-                        if (!(bool)equals.Invoke(left, new[] { right }))
+                        if (!(bool)equals.Invoke(left, new[] { right })!)
                             throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
                     };
                 }
@@ -104,10 +104,10 @@ namespace ChainingAssertion
 
                 if (comparable.IsAssignableFrom(typeInfo))
                 {
-                    var compareTo = comparable.GetDeclaredMethod("CompareTo");
+                    var compareTo = comparable.GetDeclaredMethod("CompareTo")!;
                     return (left, right, name, message) =>
                     {
-                        if (0 != (int)compareTo.Invoke(left, new[] { right }))
+                        if (0 != (int)compareTo.Invoke(left, new[] { right })!)
                             throw Assertion.Exception($"is not structural equal, failed at {name}, expected = {left} actual = {right}{message}");
                     };
                 }
