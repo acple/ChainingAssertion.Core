@@ -21,17 +21,17 @@ namespace ChainingAssertion
         public void NotEqual<T>(T expected, T actual, string message)
             => Assert.AreNotEqual(expected, actual);
 
-        public void Equal<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T>? comparer, string message)
+        public void Equal<T>(IEnumerable<T> expected, IEnumerable<T>? actual, IEqualityComparer<T>? comparer, string message)
             => CollectionAssert.AreEqual(
                 expected.ToArray(),
-                actual.ToArray(),
+                actual?.ToArray(),
                 (comparer is AssertEqualityComparer<T> eq) ? eq : new AssertEqualityComparer<T>(comparer ?? EqualityComparer<T>.Default),
                 message);
 
-        public void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T>? comparer, string message)
+        public void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T>? actual, IEqualityComparer<T>? comparer, string message)
             => CollectionAssert.AreNotEqual(
                 expected.ToArray(),
-                actual.ToArray(),
+                actual?.ToArray(),
                 (comparer is AssertEqualityComparer<T> eq) ? eq : new AssertEqualityComparer<T>(comparer ?? EqualityComparer<T>.Default),
                 message);
 

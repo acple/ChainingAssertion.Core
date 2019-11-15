@@ -15,9 +15,9 @@ namespace ChainingAssertion
 
         void NotEqual<T>(T expected, T actual, string message);
 
-        void Equal<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T>? comparer, string message);
+        void Equal<T>(IEnumerable<T> expected, IEnumerable<T>? actual, IEqualityComparer<T>? comparer, string message);
 
-        void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T>? comparer, string message);
+        void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T>? actual, IEqualityComparer<T>? comparer, string message);
 
         void Null<T>(T value, string message);
 

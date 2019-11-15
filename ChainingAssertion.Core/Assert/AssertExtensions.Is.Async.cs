@@ -17,19 +17,19 @@ namespace ChainingAssertion
             => (await value.ConfigureAwait(false)).Is(predicate, message);
 
         /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
-        public static async Task Is<T>(this Task<IEnumerable<T>> actual, params T[] expected)
+        public static async Task Is<T>(this Task<IEnumerable<T>?> actual, params T[] expected)
             => (await actual.ConfigureAwait(false)).Is(expected);
 
         /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
-        public static async Task Is<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, string message = "")
+        public static async Task Is<T>(this Task<IEnumerable<T>?> actual, IEnumerable<T> expected, string message = "")
             => (await actual.ConfigureAwait(false)).Is(expected, message);
 
         /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
-        public static async Task Is<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
+        public static async Task Is<T>(this Task<IEnumerable<T>?> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
             => (await actual.ConfigureAwait(false)).Is(expected, comparer, message);
 
         /// <summary>verifies that <paramref name="actual"/> is sequentially equal to <paramref name="expected"/></summary>
-        public static async Task Is<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
+        public static async Task Is<T>(this Task<IEnumerable<T>?> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
             => (await actual.ConfigureAwait(false)).Is(expected, equals, message);
 
         /// <summary>verifies that <paramref name="actual"/> is not equal to <paramref name="expected"/></summary>
@@ -37,19 +37,19 @@ namespace ChainingAssertion
             => (await actual.ConfigureAwait(false)).IsNot(expected, message);
 
         /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
-        public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, params T[] expected)
+        public static async Task IsNot<T>(this Task<IEnumerable<T>?> actual, params T[] expected)
             => (await actual.ConfigureAwait(false)).IsNot(expected);
 
         /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
-        public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, string message = "")
+        public static async Task IsNot<T>(this Task<IEnumerable<T>?> actual, IEnumerable<T> expected, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, message);
 
         /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
-        public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
+        public static async Task IsNot<T>(this Task<IEnumerable<T>?> actual, IEnumerable<T> expected, IEqualityComparer<T> comparer, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, comparer, message);
 
         /// <summary>verifies that <paramref name="actual"/> is not sequentially equal to <paramref name="expected"/></summary>
-        public static async Task IsNot<T>(this Task<IEnumerable<T>> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
+        public static async Task IsNot<T>(this Task<IEnumerable<T>?> actual, IEnumerable<T> expected, Func<T, T, bool> equals, string message = "")
             => (await actual.ConfigureAwait(false)).IsNot(expected, equals, message);
 
         /// <summary>verifies that the <paramref name="value"/> is null</summary>
@@ -85,11 +85,11 @@ namespace ChainingAssertion
             => (await value.ConfigureAwait(false)).IsNotInstanceOf<T>(message);
 
         /// <summary>verifies that the <paramref name="collection"/> is empty</summary>
-        public static async Task IsEmpty<T>(this Task<IEnumerable<T>> collection, string message = "")
+        public static async Task IsEmpty<T>(this Task<IEnumerable<T>?> collection, string message = "")
             => (await collection.ConfigureAwait(false)).IsEmpty(message);
 
         /// <summary>verifies that the <paramref name="collection"/> is not empty</summary>
-        public static async Task IsNotEmpty<T>(this Task<IEnumerable<T>> collection, string message = "")
+        public static async Task IsNotEmpty<T>(this Task<IEnumerable<T>?> collection, string message = "")
             => (await collection.ConfigureAwait(false)).IsNotEmpty(message);
     }
 }

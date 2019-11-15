@@ -20,10 +20,10 @@ namespace ChainingAssertion
         public void NotEqual<T>(T expected, T actual, string message)
             => Assert.NotEqual(expected, actual);
 
-        public void Equal<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T>? comparer, string message)
+        public void Equal<T>(IEnumerable<T> expected, IEnumerable<T>? actual, IEqualityComparer<T>? comparer, string message)
             => Assert.Equal(expected, actual, comparer ?? EqualityComparer<T>.Default);
 
-        public void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T>? comparer, string message)
+        public void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T>? actual, IEqualityComparer<T>? comparer, string message)
             => Assert.NotEqual(expected, actual, comparer ?? EqualityComparer<T>.Default);
 
         public void Null<T>(T value, string message)
