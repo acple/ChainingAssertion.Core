@@ -54,7 +54,9 @@ jobs:
           at: .
       - run:
           name: pack
-          command: dotnet pack -c Release --no-build --output ./nuget
+          command: >-
+            dotnet pack -c Release --no-build -v=normal --output ./nuget
+            -p:RepositoryBranch=${CIRCLE_BRANCH},RepositoryCommit=${CIRCLE_SHA1}
       - store_artifacts:
           path: ./nuget
       - persist_to_workspace:
@@ -67,7 +69,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: push to NuGet Gallery
+          name: push to NuGet gallery
           command: dotnet nuget push ./nuget/ -s https://www.nuget.org -k ${NUGET_APIKEY}
 
 workflows:

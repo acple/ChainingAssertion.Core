@@ -16,6 +16,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest.ChainingAssertion.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest.ChainingAssertion.Core.Xunit", "UnitTest.ChainingAssertion.Core.Xunit\UnitTest.ChainingAssertion.Core.Xunit.csproj", "{5DC29330-6AF0-413F-BFC1-31B194286D6E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CDC94231-C586-4F31-ACE8-D03C184BE567}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".circleci", ".circleci", "{B5329818-AD31-4A8A-A38C-E5F8F181F0F6}"
+	ProjectSection(SolutionItems) = preProject
+		.circleci\config.yml = .circleci\config.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ChainingAssertion.Core\ChainingAssertion.Core.projitems*{33e01a51-890d-43f8-98df-f93054884a5c}*SharedItemsImports = 5
@@ -107,6 +117,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B5329818-AD31-4A8A-A38C-E5F8F181F0F6} = {CDC94231-C586-4F31-ACE8-D03C184BE567}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF8617CA-E833-400D-8322-FC4DC2EF6AB5}

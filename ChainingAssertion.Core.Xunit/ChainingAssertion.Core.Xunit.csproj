@@ -11,16 +11,7 @@
 
   <PropertyGroup>
     <PackageId>ChainingAssertion.Core.Xunit</PackageId>
-    <Version>1.1.0</Version>
-    <Authors>acple</Authors>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/acple/ChainingAssertion.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/acple/ChainingAssertion.Core.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryBranch>v$(Version)</RepositoryBranch>
     <Description>Method Chaining base UnitTesting Extensions for xUnit.net 2.2+</Description>
-    <Copyright>(c) 2017-2019 acple</Copyright>
     <PackageTags>test;unittest;xunit</PackageTags>
   </PropertyGroup>
 
