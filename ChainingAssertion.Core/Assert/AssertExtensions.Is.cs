@@ -27,7 +27,7 @@ namespace ChainingAssertion
 
             var dump = ExpressionDumper.Dump(predicate, value);
             var members = string.Join(", ", dump.Select(x => x.Key + " = " + x.Value));
-            var additional = (string.IsNullOrEmpty(message)) ? string.Empty : "\n" + message;
+            var additional = string.IsNullOrEmpty(message) ? string.Empty : $"\n{message}";
 
             Assertion.Fail($"\n{members}\n{predicate}{additional}");
         }

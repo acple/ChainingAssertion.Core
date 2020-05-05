@@ -127,7 +127,7 @@ namespace ChainingAssertion
                 {
                     foreach (var field in fields)
                     {
-                        var memberName = (field.Name.StartsWith("<")) // backingfield
+                        var memberName = field.Name.StartsWith("<") // backingfield
                             ? field.Name.Substring(1, field.Name.IndexOf('>') - 1)
                             : field.Name;
                         Run(field.GetValue(left), field.GetValue(right), name + "." + memberName, message);

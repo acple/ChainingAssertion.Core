@@ -11,14 +11,14 @@ namespace ChainingAssertion
 
         private ExpressionDumper(IEnumerable<(ParameterExpression parameter, object target)> parameters)
         {
-            this.members = parameters.ToDictionary(x => x.parameter.Name, x => new ReflectAccessor(x.target))!;
+            this.members = parameters.ToDictionary(x => x.parameter.Name!, x => new ReflectAccessor(x.target))!;
         }
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            var parent = node.Expression.ToString();
+            var parent = node.Expression!.ToString();
             var name = node.Member.Name;
-            var fullname = parent + "." + name;
+            var fullname = $"{parent}.{name}";
 
             if (this.members.ContainsKey(fullname))
                 return node;
